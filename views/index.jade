@@ -15,9 +15,9 @@ block map
 					tweet_coordinates = tweet_obj.coordinates;
 					if (tweet_coordinates != "null" && tweet_coordinates != ":null") {
 						LatLng = tweet_coordinates.split(',');	
-						Lat = LatLng[1].substring(1,LatLng[1].length-1);
+						Lat = LatLng[0].substring(1);
 						LatArray.push(Lat);
-						Lng = LatLng[0].substring(1);
+						Lng = LatLng[1].substring(1,LatLng[1].length-1);
 						LngArray.push(Lng);	
 					}
 				}	
@@ -79,6 +79,7 @@ block content
 		option(value='modi')	Modi
 		option(value='ebola')	Ebola
 		option(value='india')	India
+		option(value='nyc')	NYC
 	button(id='select_button', onclick="removeMarkers();populate();") Go!
 	button(id='clear_button', onclick="removeMarkers()") Clear 
 	div(id='map-canvas', style='height:100%; width: 100%; margin: 0px; padding: 0px; position: fixed')

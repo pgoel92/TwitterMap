@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 	var db = req.db;
-	var collection = db.get('tweetcollection');
+	var collection = db.get('tweetCollection');
 	collection.find({}, function(e, docs){
         res.render('index', {
             "tweets" : docs

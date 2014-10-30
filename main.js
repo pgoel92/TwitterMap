@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 // New Code
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/tweetdb');
+var db = monk('localhost:27017/tweeted');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

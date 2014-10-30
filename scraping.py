@@ -29,7 +29,7 @@ for tweet in tweets:
 	data['created_at'] = tweet['created_at']
 	data['text'] = tweet['text']
 	data['location'] = tweet['user']['location'] if tweet['user']['location'] else 'null'
-	data['coordinates'] = 'tweet['geo']['coordinates']' if tweet['geo'] else 'null'
+	data['coordinates'] = str(tweet['geo']['coordinates']) if tweet['geo'] else 'null'
 	data['id'] = tweet['id_str']	
 	
 	for word in tracks:
