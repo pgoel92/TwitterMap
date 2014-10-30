@@ -15,7 +15,7 @@ block map
 					tweet_coordinates = tweet_obj.coordinates;
 					if (tweet_coordinates != "null" && tweet_coordinates != ":null") {
 						LatLng = tweet_coordinates.split(',');	
-						Lat = LatLng[1].substring(0,LatLng[1].length-1);
+						Lat = LatLng[1].substring(1,LatLng[1].length-1);
 						LatArray.push(Lat);
 						Lng = LatLng[0].substring(1);
 						LngArray.push(Lng);	
