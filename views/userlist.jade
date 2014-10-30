@@ -1,0 +1,42 @@
+
+html
+	head
+		script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAJasxLfh0voZS5xs_ZhEK6ChJUCpNSZ0g&sensor=true')
+		script.
+			var LatArray = [41.85, 61.21, 19.42, 0, 51.5, -26.2, -4.325, -33.86];
+			var LngArray = [-87.65, -149.90, -99.12, 0, -0.126, 28.04, 15.32, 151.20];
+				
+			var locationArray = [];
+			
+			for(var i=0;i<8;i++) {
+				marker = new google.maps.LatLng(LatArray[i],LngArray[i]);
+				locationArray.push(marker);
+			}
+			//document.getElementById('debug').innerHTML('Hello');  
+			var locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
+			
+			function initialize() {
+			var mapOptions = {
+				center: { lat: 18.610, lng: 7.230},
+				zoom: 2
+			};
+			var mymap = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+			
+			var coord;
+			for (coord in locationArray) {
+				new google.maps.Marker({
+					position: locationArray[coord],
+					map: mymap,
+					title: locationNameArray[coord]
+				});
+			}
+			//var markerCluster = new MarkerClusterer(mymap, locationArray);
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+
+	body
+		<!--div(id="map-canvas", style="height: 100%; width: 100%")-->
+		each tweet, i in userlist
+			li
+				a(href='#')
+					tweet.location

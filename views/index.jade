@@ -1,0 +1,84 @@
+extends layout
+
+block map
+	script(type="text/javascript", src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJasxLfh0voZS5xs_ZhEK6ChJUCpNSZ0g")
+	script(type="text/javascript").
+		var LatArray = [];
+		var LngArray = [];
+		function getCoordinates(data,keyword) {
+			LatArray = [];
+			LngArray = [];
+			var len=data.length;
+			for (var i=0;i<len;i++) {
+				tweet_obj = data[i];	
+				if (tweet_obj.keyword == keyword) {
+					tweet_coordinates = tweet_obj.coordinates;
+					if (tweet_coordinates != "null" && tweet_coordinates != ":null") {
+						LatLng = tweet_coordinates.split(',');	
+						Lat = LatLng[1].substring(0,LatLng[1].length-1);
+						LatArray.push(Lat);
+						Lng = LatLng[0].substring(1);
+						LngArray.push(Lng);	
+					}
+				}	
+			}
+			//return [LatArray, LngArray];
+		}	
+	script(type="text/javascript").
+		var map;
+		var tweet_data = !{JSON.stringify(tweets)};
+		var locationArray = [];
+		var markers = [];
+		function setAllMap(tmap) {
+			for (var i = 0; i < markers.length; i++) {
+				markers[i].setMap(tmap);
+			}
+		}
+		function removeMarkers() {
+			console.log("removing markers");	
+			setAllMap(null);
+			markers = [];
+			locationArray = [];
+		}
+		function populate() {
+			//removeMarkers();	
+			var keyword = document.getElementById('keyword_select').value;
+			console.log(keyword);
+			LatLng = getCoordinates(tweet_data,keyword);
+			//LatArray = LatLng[0];
+			//LngArray = LatLng[1];
+			for(var i=0;i<LatArray.length;i++) {
+				var pos = new google.maps.LatLng(LatArray[i],LngArray[i]);
+				locationArray.push(pos);
+			}
+			var coord;
+			for (coord in locationArray) {
+				var marker = new google.maps.Marker({
+					position: locationArray[coord],
+					map: map,
+				});
+				markers.push(marker);
+			}   
+		
+		}
+		function initialize() {
+			var mapOptions = {
+			zoom: 2,
+			center: new google.maps.LatLng(8.10, 10.20)
+			};
+			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+			
+		}
+		//var select_button = document.getElementById('select_button');
+		//google.maps.event.addDomListener(select_button, 'click', populate);
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+block content
+	select(id='keyword_select', autofocus)
+		option(value='modi', selected="selected")	Select keyword
+		option(value='modi')	Modi
+		option(value='ebola')	Ebola
+		option(value='india')	India
+	button(id='select_button', onclick="removeMarkers();populate();") Go!
+	button(id='clear_button', onclick="removeMarkers()") Clear 
+	div(id='map-canvas', style='height:100%; width: 100%; margin: 0px; padding: 0px; position: fixed')
