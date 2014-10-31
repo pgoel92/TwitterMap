@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-	var db = req.db;
-	var collection = db.get('tweetCollection');
-	collection.find({}, function(e, docs){
+	var connection = req.dbconn;
+	connection.query("SELECT * FROM tweetcollection", function(e, docs){
         res.render('index', {
             "tweets" : docs
         });

@@ -12,13 +12,11 @@ block map
 			for (var i=0;i<len;i++) {
 				tweet_obj = data[i];	
 				if (tweet_obj.keyword == keyword) {
-					tweet_coordinates = tweet_obj.coordinates;
-					if (tweet_coordinates != "null" && tweet_coordinates != ":null") {
-						LatLng = tweet_coordinates.split(',');	
-						Lat = LatLng[0].substring(1);
-						LatArray.push(Lat);
-						Lng = LatLng[1].substring(1,LatLng[1].length-1);
-						LngArray.push(Lng);	
+					tweet_lat = tweet_obj.latitude;
+					tweet_lng = tweet_obj.longitude;
+					if (tweet_lat != "null" && tweet_lng != ":null") {
+						LatArray.push(tweet_lat);
+						LngArray.push(tweet_lng);	
 					}
 				}	
 			}
