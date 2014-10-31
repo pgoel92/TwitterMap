@@ -1,0 +1,26 @@
+Authors : 
+
+Prateek Goel (pg2484) Divyansh Agarwal (da2629)
+
+Technology Stack :
+
+DB : Amazon RDS - MySQL
+Server : Node.js, Express
+Client : Jade, JS
+Maps API : Google Maps JavaScript API v3
+
+Instructions to run code locally
+
+- First, you will need to have all the dependencies installed : Node.js, Node Packaged Modules (NPM) and Express. The following commands will install these packages :
+	
+brew install node (for Mac OS X. Or just go to the website nodejs.org)
+npm install -g express
+npm install -g express-generator
+
+- Next, from the TwitterMap directory, run the following commands :
+
+npm install
+npm start
+
+Now, go to a web browser and enter the URL "localhost:8081". That's it!
+
