@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // New Code
-var mongo = require('mongodb');
-var monk = require('monk');
+//var mongo = require('mongodb');
+//var monk = require('monk');
 //var db = monk('localhost:27017/tweeted');
-var mysql      = require('mysql');
+var mysql = require('mysql');
 var connection = mysql.createConnection({
   host     : 'aa1joz6oafbld8a.cydar2lsxfnu.us-east-1.rds.amazonaws.com',
   user     : 'ebroot',
