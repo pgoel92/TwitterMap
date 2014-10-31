@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 //var db = monk('localhost:27017/tweeted');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'aa1joz6oafbld8a.cydar2lsxfnu.us-east-1.rds.amazonaws.com',
+  host     : 'aa1vyx0lh1f2htr.cydar2lsxfnu.us-east-1.rds.amazonaws.com',
   user     : 'ebroot',
   password : 'prateek123'
 });
